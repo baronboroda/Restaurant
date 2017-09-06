@@ -2,7 +2,7 @@ package com.zelenin.restaurant.beans;
 
 public class UserAccount {
     private Integer id;
-    private String userTypeName;
+    private Integer userTypeId;
     private String name;
     private String password; // remake to hash-code with salt
 
@@ -16,12 +16,12 @@ public class UserAccount {
         this.id = id;
     }
 
-    public String getUserTypeName() {
-        return userTypeName;
+    public Integer getUserTypeId() {
+        return userTypeId;
     }
 
-    public void setUserTypeName(String userTypeName) {
-        this.userTypeName = userTypeName;
+    public void setUserTypeId(Integer userId) {
+        this.userTypeId = userTypeId;
     }
 
     public String getName() {
@@ -41,6 +41,6 @@ public class UserAccount {
     }
 
     public String toString() {
-        return "user: " + getName() + "; type: " + getUserTypeName();
+        return "user: " + getName();
     }
 }

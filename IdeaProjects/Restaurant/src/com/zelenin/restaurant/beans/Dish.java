@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 public class Dish {
     private Integer id;
     private String name;
-    private String unitName;
+    private Integer unitId;
     private Float quantity;
-    private String categoryName;
+    private Integer categoryId;
     private BigDecimal price;
 
     public Dish() {}
@@ -28,12 +28,12 @@ public class Dish {
         this.name = name;
     }
 
-    public String getUnitName() {
-        return unitName;
+    public Integer getUnitId() {
+        return unitId;
     }
 
-    public void setUnitName (String unitName) {
-        this.unitName = unitName;
+    public void setUnitId (Integer unitId) {
+        this.unitId = unitId;
     }
 
     public float getQuantity() {
@@ -44,12 +44,12 @@ public class Dish {
         this.quantity = quantity;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryName(String categoryId) {
-        this.categoryName = categoryName;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     public BigDecimal getPrice() {

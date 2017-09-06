@@ -15,9 +15,8 @@ public class DBUtils {
 
     public static UserAccount findUser(Connection conn, String userName, String password) throws SQLException {
 
-        String sql = "SELECT au.id, au.name, au.password, ut.name AS user_type_name " +
+        String sql = "SELECT au.id, au.name, au.password, au.user_type_id" +
                      "FROM account_user AS au " +
-                     "LEFT OUTER JOIN user_type AS ut ON ut.id = au.user_type_id " +
                      "WHERE au.name = ? AND au.password= ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -30,7 +29,7 @@ public class DBUtils {
             user.setId(rs.getInt("id"));
             user.setName(userName);
             user.setPassword(password);
-            user.setUserTypeName(rs.getString("user_type_name"));
+            user.setUserTypeId(rs.getInt("user_type_id"));
             return user;
         }
         return null;
@@ -38,9 +37,8 @@ public class DBUtils {
 
     public static UserAccount findUser(Connection conn, String userName) throws SQLException {
 
-        String sql = "SELECT au.id, au.name, au.password, ut.name AS user_type_name " +
+        String sql = "SELECT au.id, au.name, au.password, au.user_type_id " +
                      "FROM account_user AS au " +
-                     "LEFT OUTER JOIN user_type AS ut ON ut.id = au.user_type_id " +
                      "WHERE au.name = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -51,7 +49,7 @@ public class DBUtils {
             UserAccount user = new UserAccount();
             user.setId(rs.getInt("id"));
             user.setName(userName);
-            user.setUserTypeName(rs.getString("user_type_name"));
+            user.setUserTypeId(rs.getInt("user_type_id"));
             return user;
         }
         return null;
@@ -61,10 +59,8 @@ public class DBUtils {
 
         List<Dish> result = new ArrayList<>();
 
-        String sql = "SELECT d.id, d.name, u.name as unit_name, d.quantity, c.name as category_name, d.price " +
-                     "FROM dish AS d " +
-                     "LEFT OUTER JOIN unit AS u ON ut.id = d.unit_id " +
-                     "LEFT OUTER JOIN category AS c ON c.id = d.category_id ";
+        String sql = "SELECT d.id, d.name, d.unit_id, d.quantity, d.category_id, d.price " +
+                     "FROM dish AS d";
 
         Statement stm = conn.createStatement();
         ResultSet rs = stm.executeQuery(sql);
@@ -73,9 +69,35 @@ public class DBUtils {
             Dish dish = new Dish();
             dish.setId(rs.getInt("id"));
             dish.setName(rs.getString("name"));
-            dish.setUnitName(rs.getString("unit_name"));
+            dish.setUnitId(rs.getInt("unit_id"));
             dish.setQuantity(rs.getFloat("quantity"));
-            dish.setCategoryName(rs.getString("category_name"));
+            dish.setCategoryId(rs.getInt("category_id"));
+            dish.setPrice(rs.getBigDecimal("price"));
+
+            result.add(dish);
+        }
+        return result;
+    }
+
+    public static List<Dish> getDishesByCategory(Connection conn, Category category) throws SQLException {
+
+        List<Dish> result = new ArrayList<>();
+
+        String sql = "SELECT d.id, d.name, d.unit_id, d.quantity, d.category_id, d.price " +
+                     "FROM dish AS d" +
+                     "WHERE d.category_id = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, category.getId());
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            Dish dish = new Dish();
+            dish.setId(rs.getInt("id"));
+            dish.setName(rs.getString("name"));
+            dish.setUnitId(rs.getInt("unit_id"));
+            dish.setQuantity(rs.getFloat("quantity"));
+            dish.setCategoryId(rs.getInt("category_id"));
             dish.setPrice(rs.getBigDecimal("price"));
 
             result.add(dish);

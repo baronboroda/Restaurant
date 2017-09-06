@@ -25,23 +25,13 @@ public class MySQLConnUtils {
                                                 String userName, String password) throws SQLException,
             ClassNotFoundException{
 
-        // Creates a BasicDataSource
         BasicDataSource ds = new BasicDataSource();
 
-        // Define Driver Class
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-
-        // Define Server URL
         ds.setUrl("jdbc:mysql://" + hostName + ":3306/" + dbName + "?autoReconnect=true&useSSL=false");
-
-        // Define Username
         ds.setUsername(userName);
-
-        // Define Your Password
         ds.setPassword(password);
 
-        // onnection (session) with a specific database. SQL statements are
-        // executed and results are returned within the context of a connection.
         return ds.getConnection();
     }
 
