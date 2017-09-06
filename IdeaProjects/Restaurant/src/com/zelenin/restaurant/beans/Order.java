@@ -6,8 +6,6 @@ public class Order {
     private Integer id;
     private Integer createdById;
     private Date createdOn;
-    private Integer modifiedById;
-    private Date modifiedOn;
     private Integer ownerId;
     private Integer statusId;
     private Integer paymentTypeId;
@@ -29,14 +27,6 @@ public class Order {
 
     public void setCreatedOn(Date createdOn) {
         this. createdOn = createdOn;
-    }
-
-    public Date getModifiedOn() {
-        return modifiedOn;
-    }
-
-    public void setModifiedOn(Date modifiedOn) {
-        this.modifiedOn = modifiedOn;
     }
 
     public Integer getOwnerId() {
