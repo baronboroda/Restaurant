@@ -15,6 +15,10 @@ public class DishInOrder {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getDishId() {
         return dishId;
     }

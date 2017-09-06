@@ -13,6 +13,14 @@ public class Order {
 
     public Order() {}
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getCreatedById() {
         return createdById;
     }
