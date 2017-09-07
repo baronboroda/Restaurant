@@ -10,6 +10,7 @@ public class Order {
     private Integer statusId;
     private Integer paymentTypeId;
     private String description;
+    private boolean isPayed;
 
     public Order() {}
 
@@ -67,5 +68,13 @@ public class Order {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean getIsPayed(){
+        return isPayed;
+    }
+
+    public void setIsPayed(boolean isPayed) {
+        this.isPayed = isPayed;
     }
 }
