@@ -59,4 +59,8 @@ public class Dish {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public String  toString() {
+        return name + "price = " + price;
+    }
 }

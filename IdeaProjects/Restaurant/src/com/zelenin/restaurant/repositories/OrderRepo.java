@@ -9,19 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-/*  private Integer id;
-    private Integer createdById;
-    private Date createdOn;
-    private Integer ownerId;
-    private Integer statusId;
-    private Integer paymentTypeId;
-    private String description;
-    private boolean isPayed;*/
-
 public class OrderRepo {
 
-    public static void createOrder(Connection conn, UserAccount user, Order order) throws SQLException {
+    public static void createOrder(Connection conn, UserAccount user) throws SQLException {
         String sql = "INSERT INTO order(created_by_id, created_on, status_id, is_payed) " +
                      "VALUES (?, ?, ?, ?)";
 
